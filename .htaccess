@@ -1,0 +1,16 @@
+#Замените /errors/*.html на путь к вашим страницам ошибок
+addDefaultCharset utf8
+ErrorDocument 404 /error/404.html
+RewriteEngine on
+    RewriteRule ^auth$ index.php$1 [L]
+    RewriteRule ^mylinks$ page.php?q=1$1 [L,QSA]
+    RewriteRule ^add_link$ page.php?q=2$1 [L]
+    RewriteRule ^change_link$ page.php?q=3$1 [L,QSA]
+    RewriteRule ^person$ page.php?q=4$1 [L]
+    RewriteRule ^statistics$ page.php?q=5$1 [L,QSA]
+    RewriteRule ^delete_link$ inc/delete_link.php$1 [L]
+    RewriteRule ^qr$ qr.php [L,QSA]
+    RewriteRule ^([A-Z]{1}[0-9a-zA-Z]+)$ url.php?q=$1
+      
+#RewriteRule .(zip|setting.php)$ - [F]
+	  
