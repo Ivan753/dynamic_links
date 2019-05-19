@@ -7,32 +7,34 @@ session_start();
 
 
 if(isset($_GET["logout"])){
-    
+
     unset($_SESSION["login"]);
     unset($_SESSION["pass"]);
-    
+
     echo '<meta http-equiv="refresh" content="0; url=/auth">';
 }
 
 
 function ferror($text){
-    
+
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         header("Location: /mylinks?error=".$text);
+        return;
     }else{
         echo $text;
     }
-    
+
 }
 
 function suc($text){
- 
+
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         header("Location: /mylinks?res=".$text);
+        return;
     }else{
         echo $text;
-    } 
-    
+    }
+
 }
 
 ?>
