@@ -1,20 +1,8 @@
-<?header('Content-type: text/html; charset=utf-8');
-
+<?php
 include($_SERVER["DOCUMENT_ROOT"].'/class/sql.php');
 
-$sql = new Sql('root', '', 'dynamic_links', 'localhost');
+$sql = new Sql('root', 'qwe', 'dynamic_links', 'localhost');
 
-mysql_query("SET NAMES utf8");
-mysql_query("SET CHARSET utf8");
-
-/*
-$sql->query("CREATE TABLE category (
-    id integer not null primary key,
-    parent_category_id integer references category(id),
-    name varchar(100) not null
-)");
-*/
-//$sql->query("SELECT * FROM category");
 session_start();
 
 

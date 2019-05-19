@@ -1,26 +1,24 @@
-<?include('inc/settings.php');
+<?php
+include('inc/settings.php');
 
 if(isset($_SESSION["login"]) and isset($_SESSION["pass"])){
-    
+
     $login = htmlspecialchars($_SESSION["login"], ENT_QUOTES);
     $pass = htmlspecialchars($_SESSION["pass"], ENT_QUOTES);
-    
-    $query = $sql->query("SELECT * FROM users WHERE login = '$login' AND pass = '$pass' ");
-    
+
+    $query = $sql->query(
+      "SELECT * FROM users WHERE login = '$login' AND pass = '$pass' "
+    );
+
     if($sql->num($query) != 1){
-      
         unset($_SESSION["login"]);
         unset($_SESSION["pass"]);
-        
-        echo '<meta http-equiv="refresh" content="0; url=auth">';
         return;
-    
     }
-    
+
     $row = $sql->row($query);
-    
+
 }else{
-    echo '<meta http-equiv="refresh" content="0; url=auth">';
     return;
 }
 
@@ -36,7 +34,7 @@ if($q == 5){
         $link = $_GET["link"];
     }else{
         ferror('error: unset link');
-    }    
+    }
 }
 
 ?>
@@ -54,16 +52,16 @@ if($q == 5){
 
 <header>
 <nav>
-    <ul><? // проводится проверка для отметки активной вкладки?>
-        <a href = "mylinks" onclick = "return nav.go(this, event)" id = "a_mylinks"><li<?echo ($_GET["q"] == 1)?(' class = active_menu'):'';?>>Мои ссылки</li></a>
-        <a href = "add_link" onclick = "return nav.go(this, event)"><li<?echo ($_GET["q"] == 2)?(' class = active_menu'):'';?>>Добавить ссылку</li></a>
-        <a href = "change_link" onclick = "return nav.go(this, event)"><li<?echo ($_GET["q"] == 3)?(' class = active_menu'):'';?>>Изменить ссылку</li></a>
-        <a href = "person" onclick = "return nav.go(this, event)"><li<?echo ($_GET["q"] == 4)?(' class = active_menu'):'';?>>Настройки</li></a>
+    <ul><?php  // проводится проверка для отметки активной вкладки?>
+        <a href = "mylinks" onclick = "return nav.go(this, event)" id = "a_mylinks"><li<?php echo ($_GET["q"] == 1)?(' class = active_menu'):'';?>>Мои ссылки</li></a>
+        <a href = "add_link" onclick = "return nav.go(this, event)"><li<?php echo ($_GET["q"] == 2)?(' class = active_menu'):'';?>>Добавить ссылку</li></a>
+        <a href = "change_link" onclick = "return nav.go(this, event)"><li<?php echo ($_GET["q"] == 3)?(' class = active_menu'):'';?>>Изменить ссылку</li></a>
+        <a href = "person" onclick = "return nav.go(this, event)"><li<?php echo ($_GET["q"] == 4)?(' class = active_menu'):'';?>>Настройки</li></a>
     </ul>
 </nav>
 </header>
 
-<?
+<?php
 // проверка на ошибку или успешный результат
 if(isset($_GET["error"]) AND $_GET["error"] != NULL){
     $error = htmlspecialchars($_GET["error"]);
@@ -78,8 +76,8 @@ if(isset($_GET["res"]) AND $_GET["res"] != NULL){
 
 <div id = "all">
 
-<?
-    
+<?php
+
 switch($q){
     case 1:
         echo '<div id = "mylinks" class = "main_block" style = "display: block">'; include("nav/mylinks.php"); echo '</div>
@@ -88,7 +86,7 @@ switch($q){
             <div id = "statistics" class = "main_block"></div>
             <div id = "person" class = "main_block"></div>';
     break;
-        
+
     case 2:
         echo '<div id = "mylinks" class = "main_block"></div>
             <div id = "add_link" class = "main_block" style = "display: block">'; include("nav/add_link.php"); echo '</div>
@@ -96,7 +94,7 @@ switch($q){
             <div id = "statistics" class = "main_block"></div>
             <div id = "person" class = "main_block"></div>';
     break;
-        
+
     case 3:
         echo '<div id = "mylinks" class = "main_block"></div>
             <div id = "add_link" class = "main_block"></div>
@@ -112,7 +110,7 @@ switch($q){
             <div id = "statistics" class = "main_block"></div>
             <div id = "person" class = "main_block" style = "display: block">'; include("nav/person.php"); echo '</div>';
     break;
-    
+
     case 5:
         echo '<div id = "mylinks" class = "main_block"></div>
             <div id = "add_link" class = "main_block"></div>
@@ -120,12 +118,9 @@ switch($q){
             <div id = "statistics" class = "main_block" style = "display: block">'; include("nav/statistics.php"); echo '</div>
             <div id = "person" class = "main_block"></div>';
     break;
-    
 }
-
 ?>
 </div>
-
 
 </body>
 </html>

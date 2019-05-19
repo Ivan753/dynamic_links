@@ -1,4 +1,4 @@
-<?
+<?php
 
 if(!$sql){
     include('../inc/link_db.php');
