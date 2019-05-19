@@ -101,6 +101,7 @@ nav ul li:hover{
 }
 
 .links_table_item_url{
+    word-break: break-all;
     width: 49%;
     display: inline-block;
 }
@@ -304,3 +305,4 @@ p[error]{
 .checkbox_error_res:checked + label{
     display: none;
 }
+

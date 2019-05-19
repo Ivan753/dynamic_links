@@ -48,6 +48,7 @@ if(isset($_SESSION["login"]) and isset($_SESSION["pass"])){
     <title>Вход</title>
     <meta http-equiv = "Content-Type" content = "text-html; charset=utf-8">
 	  <meta name = "viewport" content = "width=device-width, user-scalable=no">
+    <link href = "/inc/index_form.css" rel = "stylesheet">
 </head>
 
 <body>
